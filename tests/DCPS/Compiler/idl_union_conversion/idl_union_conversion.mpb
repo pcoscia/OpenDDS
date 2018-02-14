@@ -1,0 +1,31 @@
+project : anytypecode {
+
+  sharedname = *
+    
+  idlflags += -Wb,export_macro=idl_union_conversion_Export \
+  			-Wb,export_include=idl_union_conversion_export.h
+  
+  macros += IDL_UNION_CONVERSION_BUILD_DLL
+  
+  prebuild += perl $(ACE_ROOT)/bin/generate_export_file.pl idl_union_conversion > idl_union_conversion_export.h
+
+  specific (prop:microsoft) {
+     compile_flags += "/bigobj"
+  }
+
+  IDL_Files {
+    TimeBase.idl
+    Common_Types.idl
+    Coordinates_and_Positions.idl
+    System_Track.idl
+  }
+
+  Header_Files {
+
+  }
+
+  Source_Files {
+
+  }
+  
+}
