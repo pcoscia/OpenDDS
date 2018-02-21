@@ -186,7 +186,9 @@ void postprocess(const char* fn, ostringstream& content,
 
   //  if .h add #ifndef...#define
   string macrofied;
-
+  
+  out << be_global->get_include_block(which); // MOVED FROM BELOW THE SWITCH
+  
   switch (which) {
   case BE_GlobalData::STREAM_H:
   case BE_GlobalData::STREAM_FACETS_H:
@@ -254,7 +256,7 @@ void postprocess(const char* fn, ostringstream& content,
     ;
   }
 
-  out << be_global->get_include_block(which);
+//  out << be_global->get_include_block(which); // MOVED BEFORE THE SWITCH 
 
   out << content.str();
 
